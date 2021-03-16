@@ -12,12 +12,21 @@ package main;
 import classes.*;
 import java.util.Scanner;
 public class MainAplikasikasir {
+    //tambahkan
+    public DaftarMenu daftarMenu;
+    public static double PAJAK_PPN = 0.10;
+    public static double BIAYA_SERVICE = 0.05;
+    //akhir tambahan
     
     public static void main(String[] args) {
         //inisialisasi kelas Scanner untuk mengambil
         //input dari keyboard
         Scanner input = new Scanner(System.in);
-        
+        //tambahkan
+        String no_transaksi, nama_pemesan, tanggal, no_meja = "";
+        String transaksi_lagi = "", pesan_lagi = "", keterangan = "", makan_ditempat;
+        int jumlah_pesanan, no_menu;
+        //akhir tambahan
         MainAplikasikasir app = new MainAplikasikasir();
         //tampilkan daftar menu
         app.generateDaftarMenu();
@@ -45,7 +54,5 @@ public class MainAplikasikasir {
         
         daftarMenu.tampilDaftarMenu();
     }
-    
-    public DaftarMenu daftarMenu;
 }
 

@@ -9,7 +9,7 @@ package classes;
  *
  * @author gin0612
  */
-public class Minuman extends Menu {
+public class Minuman extends Menu { //subclass
     
     public Minuman(String nama_minuman, double harga) {
         setNama_menu(nama_minuman);

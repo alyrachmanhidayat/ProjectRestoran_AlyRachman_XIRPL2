@@ -9,15 +9,17 @@ package classes;
  *
  * @author gin0612
  */
-public class Menu {
+public class Menu { //superclass
     private String nama_menu;
     private double harga;
     private String kategori;
     
+    //accessor
     public String getNama_menu() { 
         return nama_menu;
     }
     
+    //mutator
     public void setNama_menu(String nama_menu) {
         this.nama_menu = nama_menu;
     }
