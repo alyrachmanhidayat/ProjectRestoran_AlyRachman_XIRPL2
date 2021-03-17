@@ -10,6 +10,8 @@ package classes;
  * @author gin0612
  */
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
 
 
 public class DaftarMenu {
@@ -41,4 +43,40 @@ public class DaftarMenu {
         getMenuByKategori("Topping");
         getMenuByKategori("Minuman");
     }
+    
+    public Menu pilihMenu() {
+        try{
+            Scanner input = new Scanner(System.in);
+
+            System.out.print("Nomor Menu yang dipesan : ");
+            int no_menu = input.nextInt();
+
+            //get menu berdasarkan no_menu, di -l karena arrayList mulai dari 0
+            Menu m = daftarMenu.get(no_menu-1);
+
+            //cek apakah menu kuah?
+            if(!m.getKategori().equalsIgnoreCase("Kuah")){
+                return m;
+            } else{
+                //jika yang dipilih adalah menu kuah, maka tidak bisa, user harus memilih lagi
+                System.out.println("[Err] Pesan dulu Menu Ramen");
+                return pilihMenu();
+            }
+
+        }catch(IndexOutOfBoundsException err){
+            //jika no_menu tidak ada, makan akan masuk kesini
+            //no_menu dianggap tidak ada ketika no_menu diluar dari index pada arraylist
+            
+            System.out.println("[Err] Pesanan Tidak Tersedia");
+            //jika no_menu tidak ada, maka user akan diminta untuk mengulang memasukkan nomor mennu
+            //teknik ini disebut dengan rekursif
+            return pilihMenu();
+        }catch(InputMismatchException err){
+            //jika input bukan berupa angka akan masuk kesini
+            System.out.println("[Err] Mohon masukkan nomor menu");
+            return pilihMenu();
+        }
+    }
 }
+
+

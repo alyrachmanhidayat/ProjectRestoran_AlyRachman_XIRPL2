@@ -11,9 +11,11 @@ package main;
  */
 import classes.*;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class MainAplikasikasir {
-    //tambahkan
+    
     public DaftarMenu daftarMenu;
+    //tambahkan
     public static double PAJAK_PPN = 0.10;
     public static double BIAYA_SERVICE = 0.05;
     //akhir tambahan
@@ -29,6 +31,7 @@ public class MainAplikasikasir {
         //akhir tambahan
         MainAplikasikasir app = new MainAplikasikasir();
         //tampilkan daftar menu
+        
         app.generateDaftarMenu();
         //mulai transaksi
         System.out.println("========== TRANSAKSI ==========");
@@ -47,6 +50,24 @@ public class MainAplikasikasir {
             System.out.print("Nomor Meja : ");
             no_meja = input.next();
         }
+        
+        //buat transaksi baru
+        Transaksi trans = new Transaksi(no_transaksi, nama_pemesan, tanggal, no_meja);
+        System.out.println("======== PESANAN ========");
+        int no_kuah;
+        do {
+            //ambil menu berdasarkan nomor ururt yang dipilih
+            Menu menu_yang_dipilih = app.daftarMenu.pilihMenu();
+            
+            jumlah_pesanan = (int) app.cekInputNumber("Jumlah : ");
+            
+            //buat pesanan
+            Pesanan pesanan = new Pesanan(menu_yang_dipilih, jumlah_pesanan);
+            trans.tambahPesanan(pesanan);
+            //konfirmasi, mau tambah pesanan atau ngga
+            System.out.print("Tambah Pesanan lagi? [Y/N]");
+            pesan_lagi = input.next();
+        } while (pesan_lagi.equalsIgnoreCase("Y"));
     }
     
     public void generateDaftarMenu() {
@@ -70,6 +91,18 @@ public class MainAplikasikasir {
         daftarMenu.tambahMenu(new Minuman("Vietnam Dripp", 14000));
         
         daftarMenu.tampilDaftarMenu();
+    }
+    public double cekInputNumber(String label) {
+        try{
+            Scanner get_input = new Scanner(System.in);
+            System.out.print(label);
+            double nilai = get_input.nextDouble();
+            
+            return nilai;
+        }catch(InputMismatchException ex){
+            System.out.println("[Err] Harap masukkan angka");
+            return cekInputNumber(label);
+        }
     }
 }
 
