@@ -30,6 +30,7 @@ public class Pesanan {
         return jumlah;
     }
     
+    
     public String getKeterangan() { return ""; }
     
 }
