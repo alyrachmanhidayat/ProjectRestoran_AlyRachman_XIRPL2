@@ -104,11 +104,13 @@ public class MainAplikasikasir {
         } while (pesan_lagi.equalsIgnoreCase("Y"));
         //cetak struk
         trans.cetakStruk();
-        
+        //hitung total harga
         double total_pesan = trans.hitungTotalPesanan();
             System.out.println("===========================");
             System.out.println("Total : \t\t" + total_pesan);
 
+            //hitung pajak
+            //jika makan ditempat, biaya pajak = 10% ppn + 5% service
             trans.setPajak(PAJAK_PPN);
             double ppn = trans.hitungPajak();
             System.out.println("Pajak 10% : \t\t" + ppn);
@@ -120,10 +122,13 @@ public class MainAplikasikasir {
                 System.out.println("Biaya Service 5% : \t" + biaya_service);
             }
 
+            //tampilan total bayar
             System.out.println("Total : \t\t" + trans.hitungTotalBayar(ppn, biaya_service));
 
+            //cek uang bayar, apakah > total bayar atau tidak
             double kembalian = 0;
             do {
+                //ambil input uang bayar
                 double uang_bayar = app.cekInputNumber("Uang Bayar: \t\t");
 
                 kembalian = trans.hitungKembalian(uang_bayar);

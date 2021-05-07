@@ -7,7 +7,6 @@ package classes;
 import java.util.ArrayList;
 /**
  *
- * @author FaishalEka
  */
 public class Transaksi {
     private String noTransaksi;
