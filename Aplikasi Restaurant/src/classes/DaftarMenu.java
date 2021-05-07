@@ -77,6 +77,37 @@ public class DaftarMenu {
             return pilihMenu();
         }
     }
+    public Menu pilihKuah(){
+        try{
+            Scanner input = new Scanner(System.in);
+            
+            System.out.print("Kuah [sesuai nomor menu] : ");
+            int no_menu = input.nextInt();
+            
+            //get menu berdasarkan no_menu di -1 karena arraylist mulai dari 0
+            Menu m = daftarMenu.get(no_menu-1);
+            
+            //cek apakah menu kuah?
+            if(m.getKategori().equalsIgnoreCase("Kuah")){
+                return m;
+            }else{
+                System.out.println("[Err] Bukan Menu Kuah");
+                return pilihKuah();
+            }
+        }catch(IndexOutOfBoundsException err){
+            //jika no_menu tidak ada, makan akan masuk ke sini
+            //no_menu dianggap tidak ada ketika no_menu diluar dari index pada arraylist
+            
+            System.out.println("[Err] Pesanan tidak tersedia");
+            //jika tidak ada, maka user akan diminta untuk mengulang memasukkan nomor menu
+            //teknik ini disebut dengan rekursif
+            return pilihKuah();
+        }catch(InputMismatchException err){
+            //jika input bukan berupa angka akan masuk kesini
+            System.out.println("[Err] Mohon masukkan nomor kuah");
+            return pilihKuah();
+        }
+    }
 }
 
 
